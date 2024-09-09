@@ -14,7 +14,7 @@ const AuthRouter = ({ children }: any) => {
   const { pathname } = useLocation()
   // 如果去login，放行
 
-  if (localStorage.getItem('token') && pathname === '/login') {
+  if (localStorage.getItem('accessToken') && pathname === '/login') {
     return <Navigate to="/home" replace />
   }
   if (pathname === '/login') {
@@ -23,7 +23,7 @@ const AuthRouter = ({ children }: any) => {
   }
 
   // * 判断是否有Token,如果没token.跳到登陆页
-  if (!localStorage.getItem('token')) return <Navigate to="/login" replace />
+  if (!localStorage.getItem('accessToken')) return <Navigate to="/login" replace />
   const temp = routesData.filter(
     (item: { path: string }) => item.path === pathname
   )

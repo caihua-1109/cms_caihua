@@ -1,5 +1,7 @@
 {
+  "quoteProps": "consistent",
   "singleQuote": true,
+  "jsxSingleQuote": true,
   "tabWidth": 2,
   "endOfLine": "lf",
   "trailingComma": "none",

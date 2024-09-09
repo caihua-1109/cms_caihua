@@ -31,7 +31,7 @@ const AvatarIcon = () => {
       okText: '确认',
       cancelText: '取消',
       onOk: () => {
-        localStorage.removeItem('token')
+        localStorage.removeItem('accessToken')
         dispatch(userInfoSETFC({}))
         cookie.remove('wrap')
         message.success('退出登录成功！')
