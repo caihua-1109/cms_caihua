@@ -3,27 +3,24 @@
  */
 import { useEffect, useState } from 'react'
 import { Button, Form, Input, message, Modal, Select } from 'antd'
-import { addUser } from '@/service/userService'
+import { addRole, addUser } from "@/service/userService"
 
 const { Option } = Select
 
-const UserAdd = ({
+const Add = ({
   visible,
   onCancel,
-  onSuccess,
-  rolesList
+  onSuccess
 }: {
   visible: boolean
   onCancel: () => void
   onSuccess: () => void
-  rolesList: any[]
 }) => {
   const [form] = Form.useForm()
   const [loading, setLoading] = useState(false)
   const onFinish = (values: any) => {
-    console.log(values, 'values')
 
-    addUser(values).then((res: any) => {
+    addRole(values).then((res: any) => {
       const { data, code } = res || {}
       console.log(res, 'res')
       if (code === 200) {
@@ -34,10 +31,6 @@ const UserAdd = ({
       }
     })
   }
-
-  useEffect(() => {
-    console.log(rolesList)
-  }, [])
 
   return (
     <Modal
@@ -56,31 +49,18 @@ const UserAdd = ({
         autoComplete='off'
       >
         <Form.Item
-          label='用户名'
-          name='username'
-          rules={[{ required: true, message: '请输入用户名' }]}
+          label='角色码'
+          name='roleCode'
+          rules={[{ required: true, message: '请输入角色码' }]}
         >
-          <Input placeholder='请输入用户名' />
+          <Input placeholder='请输入角色码' />
         </Form.Item>
         <Form.Item
-          label='密码'
-          name='password'
-          rules={[{ required: true, message: '请输入密码' }]}
+          label='角色名'
+          name='roleName'
+          rules={[{ required: true, message: '请输入角色名' }]}
         >
-          <Input.Password placeholder='请输入密码' />
-        </Form.Item>
-        <Form.Item
-          label='角色'
-          name='roles'
-          rules={[{ required: true, message: '请选择角色' }]}
-        >
-          <Select placeholder='请选择角色' mode='multiple' allowClear>
-            {rolesList.map((item: any) => (
-              <Option key={item.roleId} value={item.roleId}>
-                {item.roleName}
-              </Option>
-            ))}
-          </Select>
+          <Input placeholder='请输入角色名' />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 19, span: 5 }}>
           <Button type='primary' htmlType='submit' loading={loading}>
@@ -95,4 +75,4 @@ const UserAdd = ({
   )
 }
 
-export default UserAdd
+export default Add

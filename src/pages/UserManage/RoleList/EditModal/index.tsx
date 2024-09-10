@@ -1,33 +1,35 @@
 /**
- * @description: 用户新增
+ * @description: 编辑
  */
 import { useEffect, useState } from 'react'
 import { Button, Form, Input, message, Modal, Select } from 'antd'
-import { addUser, editUser } from '@/service/userService'
+import { addUser, editRole, editUser } from "@/service/userService"
 
 const { Option } = Select
 
-const UserEdit = ({
+const Edit = ({
   visible,
   onCancel,
   onSuccess,
-  data,
-  rolesList
+  data
 }: {
   visible: boolean
   onCancel: () => void
   onSuccess: () => void
   data?: any
-  rolesList: any[]
 }) => {
   const [form, setForm] = Form.useForm()
   const [loading, setLoading] = useState(false)
   const onFinish = (values: any) => {
-    const newUser = {
-      ...data,
-      ...values
+    // const newRole = {
+    //   ...data,
+    //   ...values
+    // }
+    const newRole = {
+      ...values,
+      roleId: data?.roleId
     }
-    editUser(newUser).then((res: any) => {
+    editRole(newRole).then((res: any) => {
       const { data, code } = res || {}
       if (code === 200) {
         message.success('修改成功')
@@ -40,9 +42,6 @@ const UserEdit = ({
 
   useEffect(() => {
     form.setFieldsValue(data)
-    form.setFieldsValue({
-      roles: data?.roles?.map((item: any) => item.roleId)
-    })
   }, [data])
 
   return (
@@ -62,39 +61,18 @@ const UserEdit = ({
         autoComplete='off'
       >
         <Form.Item
-          label='用户名'
-          name='username'
-          rules={[{ required: true, message: '请输入用户名' }]}
+          label='角色码'
+          name='roleCode'
+          rules={[{ required: true, message: '请输入角色码' }]}
         >
-          <Input />
+          <Input placeholder='请输入角色码' />
         </Form.Item>
         <Form.Item
-          label='密码'
-          name='password'
-          rules={[
-            {
-              required: true,
-              message: '请输入密码',
-              min: 6,
-              max: 12,
-              pattern: /^[a-zA-Z0-9]{6,12}$/
-            }
-          ]}
+          label='角色名'
+          name='roleName'
+          rules={[{ required: true, message: '请输入角色名' }]}
         >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item
-          label='角色'
-          name='roles'
-          rules={[{ required: true, message: '请选择角色' }]}
-        >
-          <Select placeholder='请选择角色' mode='multiple' allowClear>
-            {rolesList.map((item: any) => (
-              <Option key={item.roleId} value={item.roleId}>
-                {item.roleName}
-              </Option>
-            ))}
-          </Select>
+          <Input placeholder='请输入角色名' />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
           <Button type='primary' htmlType='submit' loading={loading}>
@@ -109,4 +87,4 @@ const UserEdit = ({
   )
 }
 
-export default UserEdit
+export default Edit

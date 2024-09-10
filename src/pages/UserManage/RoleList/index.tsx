@@ -1,5 +1,5 @@
 /**
- * 用户列表
+ * 角色管理列表
  */
 import { useEffect, useState } from 'react'
 import {
@@ -9,23 +9,20 @@ import {
   Row,
   Space,
   Table,
-  TableProps,
-  Tag
+  TableProps
 } from 'antd'
 import styles from './index.module.less'
 import Search from 'antd/es/input/Search'
-import { deleteUser, getRoleList, getUserList } from '@/service/userService'
-import UserAdd from '@/pages/UserManage/UserList/AddModal'
-import UserEdit from '@/pages/UserManage/UserList/EditModal'
+import { deleteRole, deleteUser, getRoleList } from '@/service/userService'
+import Add from '@/pages/UserManage/RoleList/AddModal'
+import Edit from '@/pages/UserManage/RoleList/EditModal'
 
 const defaultPageSize = 10
 
-const UserList = () => {
+const RoleList = () => {
   const [dataSource, setDataSource] = useState<any>([])
   const [total, setTotal] = useState(0)
   const [current, setCurrent] = useState<number>(1)
-  // const [pageNum, setPageNum] = useState(1)
-  // const [pageSize, setPageSize] = useState(10)
   const [searchParams, setSearchParams] = useState<any>({
     keyword: '',
     pageSize: defaultPageSize,
@@ -38,13 +35,11 @@ const UserList = () => {
   const [editVisible, setEditVisible] = useState<boolean>(false)
   const [editData, setEditData] = useState<any>({})
 
-  const [roles, setRoles] = useState<any[]>([])
-
   const columns: TableProps<any>['columns'] = [
     {
       title: '序号',
       dataIndex: 'userId',
-      key: 'userId',
+      key: 'roleId',
       width: 80,
       align: 'center',
       render: (_, record, index) => (
@@ -52,48 +47,22 @@ const UserList = () => {
       )
     },
     {
-      title: '用户名',
-      dataIndex: 'username',
-      key: 'username',
+      title: '角色码',
+      dataIndex: 'roleCode',
+      key: 'roleCode',
       width: 300,
       ellipsis: true,
       align: 'center',
       render: text => <p>{text}</p>
     },
     {
-      title: '邮箱',
-      dataIndex: '邮箱',
-      key: 'email',
-      align: 'center'
-    },
-    {
-      title: '地址',
-      dataIndex: '地址',
-      key: 'address',
-      align: 'center'
-    },
-    {
-      title: '角色',
-      key: 'roles',
-      dataIndex: 'roles',
+      title: '角色名',
+      dataIndex: 'roleName',
+      key: 'username',
+      width: 300,
+      ellipsis: true,
       align: 'center',
-      render: (_, { roles }) => (
-        <>
-          {roles.map(role => {
-            const { roleName } = role || {}
-
-            let color = roleName.length > 5 ? 'geekblue' : 'green'
-            if (roleName === 'loser') {
-              color = 'volcano'
-            }
-            return (
-              <Tag color={color} key={roleName}>
-                {roleName.toUpperCase()}
-              </Tag>
-            )
-          })}
-        </>
-      )
+      render: text => <p>{text}</p>
     },
     {
       title: '操作',
@@ -122,7 +91,7 @@ const UserList = () => {
   ]
 
   const getList = () => {
-    getUserList(searchParams).then(res => {
+    getRoleList(searchParams).then(res => {
       const { list, total } = res?.data || {}
 
       if (Array.isArray(list)) {
@@ -141,22 +110,9 @@ const UserList = () => {
     setCurrent(1)
   }
 
-  const getRoles = () => {
-    getRoleList({
-      pageSize: 9998,
-      pageNum: 1
-    }).then(res => {
-      const { list } = res?.data || {}
-
-      if (Array.isArray(list)) {
-        setRoles(list)
-      }
-    })
-  }
-
   const deleteFunction = record => {
-    const { userId } = record || {}
-    deleteUser({ userId }).then((res: any) => {
+    const { roleId } = record || {}
+    deleteRole({ roleId }).then((res: any) => {
       if (res?.code === 200) {
         message.success('删除成功')
         getList()
@@ -165,10 +121,6 @@ const UserList = () => {
       }
     })
   }
-
-  useEffect(() => {
-    getRoles()
-  }, [])
 
   useEffect(() => {
     getList()
@@ -212,8 +164,7 @@ const UserList = () => {
         }}
       />
       {addVisible && (
-        <UserAdd
-          rolesList={roles}
+        <Add
           visible={addVisible}
           onCancel={() => setAddVisible(false)}
           onSuccess={() => {
@@ -229,8 +180,7 @@ const UserList = () => {
       )}
 
       {editVisible && (
-        <UserEdit
-          rolesList={roles}
+        <Edit
           data={editData}
           visible={editVisible}
           onCancel={() => {
@@ -247,4 +197,4 @@ const UserList = () => {
   )
 }
 
-export default UserList
+export default RoleList

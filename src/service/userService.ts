@@ -56,9 +56,42 @@ export const editUser = (data: any) => {
 }
 
 /**
+ * 增加角色
+ */
+export const addRole = (data: any) => {
+  return request({
+    url: PUBLIC.ADD_ROLE,
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 编辑角色
+ */
+export const editRole = (data: any) => {
+  return request({
+    url: PUBLIC.EDIT_ROLE,
+    method: 'put',
+    data
+  })
+}
+
+/**
+ * 删除角色
+ */
+export const deleteRole = (params: any) => {
+  const { roleId } = params || {}
+  return request({
+    url: PUBLIC.DELETE_ROLE(roleId),
+    method: 'delete'
+  })
+}
+
+/**
  * 获取角色列表
  */
-export const getRoleList = (params?: any) => {
+export const getRoleList = (params: any) => {
   return request({
     url: PUBLIC.GET_ROLE_LIST,
     method: 'get',

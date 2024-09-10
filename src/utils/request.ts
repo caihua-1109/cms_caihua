@@ -24,8 +24,8 @@ request.interceptors.request.use(
     NProgress.start()
     // * 将当前请求添加到 pending 中
     axiosCanceler.addPending(config)
-    // * 如果当前请求不需要显示 loading,在api服务中通过指定的第三个参数: { headers: { noLoading: true } }来控制不显示loading，参见loginApi
-    config.headers!.noLoading || showFullScreenLoading()
+    // * 如果当前请求需要显示 loading,在api服务中通过指定的第三个参数: { headers: { noLoading: false } }来控制显示loading，参见loginApi
+    if (config.headers?.noLoading == false) showFullScreenLoading()
     configTemp = config
     const token = localStorage.getItem('accessToken')
     if (!config.headers.Authorization && token) {

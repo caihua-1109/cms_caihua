@@ -14,9 +14,15 @@ export const PUBLIC = {
   // 新增用户
   ADD_USER: '/admin/users/add',
   // 编辑用户
-  EDIT_USER: 'admin/users/update',
+  EDIT_USER: '/admin/users/update',
   // 获取角色列表
-  GET_ROLE_LIST: '/user/role/search'
+  GET_ROLE_LIST: '/admin/role/search',
+  // 删除角色
+  DELETE_ROLE: roleId => `/admin/role/del/${roleId}`,
+  // 新增角色
+  ADD_ROLE: '/admin/role/add',
+  // 编辑角色
+  EDIT_ROLE: '/admin/role/update'
 }
 
 export default {

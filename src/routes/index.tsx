@@ -12,8 +12,8 @@ const ColumnChart = lazy(() => import('@/pages/Echarts/ColumnChart'))
 const Exception403 = lazy(() => import('@/pages/Exception/403'))
 const Exception404 = lazy(() => import('@/pages/Exception/404'))
 const Exception500 = lazy(() => import('@/pages/Exception/500'))
-const UserManage = lazy(() => import('@/pages/UserManage'))
 const UserList = lazy(() => import('@/pages/UserManage/UserList'))
+const RoleList = lazy(() => import('@/pages/UserManage/RoleList'))
 
 const routes: IRouteObject[] = [
   {
@@ -24,7 +24,7 @@ const routes: IRouteObject[] = [
       {
         index: true,
         path: '/',
-        element: <Navigate to="/home" />
+        element: <Navigate to='/home' />
       },
       {
         index: true,
@@ -45,17 +45,17 @@ const routes: IRouteObject[] = [
         element: lazyLoad(ColumnChart),
         title: '柱形图'
       },
-
       {
         index: true,
-        path: '/userManage',
+        path: '/systemManage/user',
+        element: lazyLoad(UserList),
         title: '用户管理'
       },
       {
         index: true,
-        path: '/userManage/user',
-        element: lazyLoad(UserList),
-        title: '用户列表'
+        path: '/systemManage/role',
+        element: lazyLoad(RoleList),
+        title: '角色管理'
       },
       // {
       //   index: true,
@@ -103,7 +103,7 @@ const routes: IRouteObject[] = [
   },
   {
     path: '*',
-    element: <Navigate to="/404" />,
+    element: <Navigate to='/404' />,
     title: '404'
   }
 ]

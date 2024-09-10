@@ -62,20 +62,20 @@ const Menu: MenuItem[] = [
     ]
   },
   {
-    key: '/userManage',
-    label: '用户管理',
+    key: '/systemManage',
+    label: '系统管理',
     icon: <ImgIcon icon={dot} />,
     children: [
       {
         key: '/user',
-        label: '用户列表',
+        label: '用户管理',
+        icon: <ImgIcon icon={dot} />
+      },
+      {
+        key: '/role',
+        label: '角色管理',
         icon: <ImgIcon icon={dot} />
       }
-      // {
-      //   key: '/user/role',
-      //   label: '角色列表',
-      //   icon: <ImgIcon icon={dot} />
-      // },
       // {
       //   key: '/user/permission',
       //   label: '权限列表',
