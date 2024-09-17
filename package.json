@@ -68,7 +68,7 @@
     "postcss-preset-env": "^8.3.2",
     "prettier": "^2.8.8",
     "rollup-plugin-visualizer": "^5.9.0",
-    "stylelint": "^14.9.1",
+    "stylelint": "^15.6.1",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^33.0.0",
@@ -80,7 +80,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/caihua-1109/cms_caihua.git"
+    "url": "https://github.com/wskang12138/admin-template.git"
   },  
   "engines": {
     "node": ">=18.0.0",
