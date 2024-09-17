@@ -40,7 +40,7 @@ export default defineConfig({
   //跨域
   server: {
     host: '0.0.0.0', // 服务器主机名，如果允许外部访问，可设置为"0.0.0.0"
-    port: 8080,
+    port: 3002,
     open: true,
     cors: true,
     hmr: {
