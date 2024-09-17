@@ -11,6 +11,10 @@ WORKDIR /cms_web
 # 将本地项目文件复制到容器内
 COPY . /cms_web
 
+
+# 设置 npm 镜像为淘宝镜像
+RUN npm config set registry https://registry.npm.taobao.org
+
 # 安装项目依赖
 RUN npm install
 
