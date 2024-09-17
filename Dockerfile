@@ -15,8 +15,10 @@ COPY . /cms_web
 # 设置 npm 镜像为淘宝镜像
 RUN npm config set registry https://registry.npm.taobao.org
 
+RUN npm cache clean --force
+
 # 安装项目依赖
-RUN npm install
+RUN npm install --verbose
 
 # 暴露端口（假设 Vite 默认开发端口为 3002 )
 EXPOSE 3002
