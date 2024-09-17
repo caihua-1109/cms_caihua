@@ -12,8 +12,8 @@ WORKDIR /cms_web
 COPY . /cms_web
 
 
-# 设置 npm 镜像为淘宝镜像
-RUN npm config set registry https://registry.npm.taobao.org
+# # 设置 npm 镜像为淘宝镜像
+# RUN npm config set registry https://registry.npm.taobao.org
 
 RUN npm cache clean --force
 
