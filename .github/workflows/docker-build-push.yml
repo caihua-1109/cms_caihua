@@ -37,3 +37,17 @@ jobs:
       - name: Push Docker image
         run: |
           docker push crpi-l4eaw54bzztpe9af.cn-hangzhou.personal.cr.aliyuncs.com/caihuaoo/cms_web
+
+
+# 部署到服务器
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+              docker pull crpi-l4eaw54bzztpe9af.cn-hangzhou.personal.cr.aliyuncs.com/caihuaoo/cms_web:latest
+              docker stop cms_web || true
+              docker rm cms_web || true
+              docker run -d --name cms_web -p 3002:3002  crpi-l4eaw54bzztpe9af.cn-hangzhou.personal.cr.aliyuncs.com/caihuaoo/cms_web:latest
