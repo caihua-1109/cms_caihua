@@ -41,10 +41,10 @@ export default defineConfig({
   server: {
     host: '0.0.0.0', // 服务器主机名，如果允许外部访问，可设置为"0.0.0.0"
     port: 3002,
-    open: true,
-    cors: true,
+    // open: true, // 服务启动时自动打开浏览器
+    cors: true, // 为开发服务器配置 CORS
     hmr: {
-      overlay: false
+      overlay: false  // 禁用或配置 HMR 连接错误提示
     },
     // https: false,
     // 代理跨域（mock 不需要配置，这里只是个事列）
