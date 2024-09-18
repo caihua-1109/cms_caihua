@@ -20,8 +20,8 @@ COPY . /cms_web
 
 
 # 安装依赖 （--verbose 显示详细日志） 当前dockerfile 不需要安装依赖命令 已在 github action 中安装依赖 第一次需要此命令）
-# # 安装项目依赖  （--legacy-peer-deps 允许安装旧版本依赖 忽略部分依赖冲突）
-# RUN npm install --verbose --legacy-peer-deps
+# 安装项目依赖  （--legacy-peer-deps 允许安装旧版本依赖 忽略部分依赖冲突）
+RUN npm install --verbose --legacy-peer-deps
 
 # 暴露端口（假设 Vite 默认开发端口为 3002 )
 EXPOSE 3002
