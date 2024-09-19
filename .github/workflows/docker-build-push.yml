@@ -50,4 +50,4 @@ jobs:
               docker pull crpi-l4eaw54bzztpe9af.cn-hangzhou.personal.cr.aliyuncs.com/caihuaoo/cms_web:latest
               docker stop cms_web || true
               docker rm cms_web || true
-              docker run -d --name cms_web -p 3002:3002 --memory=128m  crpi-l4eaw54bzztpe9af.cn-hangzhou.personal.cr.aliyuncs.com/caihuaoo/cms_web:latest
+              docker run -d --name cms_web -p 3002:3002 --memory=256m  crpi-l4eaw54bzztpe9af.cn-hangzhou.personal.cr.aliyuncs.com/caihuaoo/cms_web:latest
