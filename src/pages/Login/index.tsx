@@ -82,7 +82,7 @@ const Login = () => {
                 <span className={styles.span}>账号</span>
                 <Form.Item
                   name="loginName"
-                  rules={ValidateuserId()}
+                  // rules={ValidateuserId()}
                   hasFeedback
                 >
                   <Input
@@ -95,7 +95,7 @@ const Login = () => {
                 <span className={styles.span}>密码</span>
                 <Form.Item
                   name="loginPwd"
-                  rules={ValidateuserPsw()}
+                  // rules={ValidateuserPsw()}
                   hasFeedback
                 >
                   <Input.Password
