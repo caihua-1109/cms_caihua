@@ -46,7 +46,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           # 根据实际服务器路径修改
           script: |
-            scp -r./dist/* ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/opt/projects/cms_web 
+            scp -r./dist/* root@121.40.62.123:/opt/projects/cms_web 
 
           
 #       - name: Checkout code
