@@ -9,17 +9,17 @@ export default defineConfig({
   plugins: [
     react(),
     visualizer(),
-    // antd 按需加载
-    // vitePluginImp({
-    //   libList: [
-    //     {
-    //       libName: 'antd',
-    //       style(name) {
-    //         return `antd/es/${name}/style/index.less`
-    //       }
-    //     }
-    //   ]
-    // }),
+    // // antd 按需加载
+    // // vitePluginImp({
+    // //   libList: [
+    // //     {
+    // //       libName: 'antd',
+    // //       style(name) {
+    // //         return `antd/es/${name}/style/index.less`
+    // //       }
+    // //     }
+    // //   ]
+    // // }),
     viteCompression({
       verbose: true,
       disable: false,
@@ -59,10 +59,10 @@ export default defineConfig({
 
   // 样式
   css: {
-    modules: {
-      generateScopedName: '[name]__[local]___[hash:base64:5]',
-      hashPrefix: 'prefix'
-    },
+    // modules: {
+    //   generateScopedName: '[name]__[local]___[hash:base64:5]',
+    //   hashPrefix: 'prefix'
+    // },
     preprocessorOptions: {
       less: {
         modifyVars: {
@@ -95,5 +95,8 @@ export default defineConfig({
       }
     },
     chunkSizeWarningLimit: 1500
-  }
+  },
+  define: {
+    'process.env': process.env,
+  },
 })

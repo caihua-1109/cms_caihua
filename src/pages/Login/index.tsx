@@ -38,7 +38,6 @@ const Login = () => {
         password: values.loginPwd
       }
       login(obj).then((res: any) => {
-        console.log(res)
         if (res?.code === 200) {
           localStorage.setItem('accessToken', res?.data?.token)
           if (checked) {

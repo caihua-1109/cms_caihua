@@ -18,7 +18,7 @@ const Edit = ({
   onSuccess: () => void
   data?: any
 }) => {
-  const [form, setForm] = Form.useForm()
+  const [form] = Form.useForm()
   const [loading, setLoading] = useState(false)
   const onFinish = (values: any) => {
     // const newRole = {

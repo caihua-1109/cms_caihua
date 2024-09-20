@@ -13,7 +13,7 @@ const axiosCanceler = new AxiosCanceler()
 let configTemp: any = ''
 const request = axios.create({
   // 默认地址请求地址，可在 .env 开头文件中修改
-  baseURL: import.meta.env.VITE_API_URL as string,
+  baseURL: process.env.VITE_API_URL as string,
   timeout: 60000, // 请求超时时间
   // 跨域时候允许携带凭证
   withCredentials: true

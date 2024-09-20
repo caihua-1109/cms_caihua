@@ -34,7 +34,7 @@ const PreviewModal: React.FC<IPreviewModal> = props => {
 
   const uuid = useMemo(() => `model_${String(new Date().valueOf())}`, [])
 
-  const handleCancel = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const handleCancel = (e: any) => {
     if (isFull) {
       setIsFull(false)
     } else if (onCancel) {
