@@ -18,7 +18,7 @@
     "checkJs": false,
     "jsx": "react-jsx",
     "baseUrl": "./",
-    "types": ["node"],
+    "types": ["node","vite/client"],
     "paths": {
       "@/*": ["src/*"],
       "pages": ["src/pages/*"]

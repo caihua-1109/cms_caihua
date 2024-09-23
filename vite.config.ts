@@ -4,11 +4,11 @@ import path from 'path' //path模块是node.js内置的功能，但是node.js本
 import { visualizer } from 'rollup-plugin-visualizer' //查看生成stats打包视图
 import viteCompression from 'vite-plugin-compression' //打包生成gz
 import vitePluginImp from 'vite-plugin-imp' //按需加载antd
-
+const isProduction = process.env.NODE_ENV === 'production'
 export default defineConfig({
   plugins: [
     react(),
-    visualizer(),
+    visualizer()
     // // antd 按需加载
     // // vitePluginImp({
     // //   libList: [
@@ -20,14 +20,14 @@ export default defineConfig({
     // //     }
     // //   ]
     // // }),
-    viteCompression({
-      verbose: true,
-      disable: false,
-      threshold: 10240,
-      algorithm: 'gzip',
-      ext: '.gz',
-      deleteOriginFile: true //是否删除源文件
-    })
+    // viteCompression({
+    //   verbose: true,
+    //   disable: false,
+    //   threshold: 10240,
+    //   algorithm: 'gzip',
+    //   ext: '.gz',
+    //   deleteOriginFile: true //是否删除源文件
+    // })
   ],
   resolve: {
     //路径别名
@@ -44,17 +44,19 @@ export default defineConfig({
     // open: true, // 服务启动时自动打开浏览器
     cors: true, // 为开发服务器配置 CORS
     hmr: {
-      overlay: false  // 禁用或配置 HMR 连接错误提示
+      overlay: false // 禁用或配置 HMR 连接错误提示
     },
     // https: false,
     // 代理跨域（mock 不需要配置，这里只是个事列）
-    proxy: {
-      '/api': {
-        target: 'http://172.17.0.1:8081', // easymock
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '')
-      }
-    }
+    proxy: isProduction
+      ? {}
+      : {
+          '/api': {
+            target: 'http://121.40.62.123:8081', // easymock
+            changeOrigin: true,
+            rewrite: path => path.replace(/^\/api/, '')
+          }
+        }
   },
 
   // 样式
@@ -95,8 +97,5 @@ export default defineConfig({
       }
     },
     chunkSizeWarningLimit: 1500
-  },
-  define: {
-    'process.env': process.env,
-  },
+  }
 })

@@ -1,5 +1,5 @@
-export const baseURL = process.env.VITE_API_URL
+export const baseURL = import.meta.env.VITE_API_URL
 
 export const baseURLDownload = `${
-  process.env.VITE_API_URL
+  import.meta.env.VITE_API_URL
 }/download?fileAddr=`
